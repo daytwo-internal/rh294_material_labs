@@ -1,0 +1,15 @@
+---
+- name: Lab 1 - Fallo por defecto
+  hosts: lab
+  gather_facts: no
+
+  tasks:
+    - name: Tarea 1 - Comando exitoso
+      command: /bin/echo "Hola desde Ansible"
+
+    - name: Tarea 2 - Comando que falla
+      command: /bin/false
+
+    - name: Tarea 3 - Nunca se ejecutará porque la anterior falla
+      debug:
+        msg: "Si ves esto, algo raro pasó"

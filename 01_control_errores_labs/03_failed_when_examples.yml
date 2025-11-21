@@ -1,0 +1,12 @@
+- name: Lab 3B - Comando que falla pero NO queremos marcar error
+  hosts: localhost
+  gather_facts: no
+
+  tasks:
+    - name: Run a command and check for specific error text
+      ansible.builtin.command: /usr/bin/my_script.sh
+      register: script_output
+      failed_when: "'ERROR: Resource not found' in script_output.stderr"
+
+
+  

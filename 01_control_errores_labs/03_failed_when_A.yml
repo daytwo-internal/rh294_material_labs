@@ -1,0 +1,17 @@
+---
+- name: Lab 3A - Forzar fallo
+  hosts: localhost
+  gather_facts: no
+
+  tasks:
+    - name: Comando exitoso pero lo marcaremos como FAILED
+      command: /bin/echo "Comando exitoso"
+      register: cmd_ok
+
+    - name: Forzando fallo con failed_when
+      debug:
+        msg: "stdout fue: {{ cmd_ok.stdout }}"
+      failed_when: true
+
+
+

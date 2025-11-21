@@ -1,0 +1,35 @@
+---
+- name: "Cliente A :: Chequeo de conectividad Ansible"
+  hosts: PROD         # o el grupo que quieras
+  gather_facts: false
+
+  tasks:
+    
+    - name: "tarea 1"
+      
+
+
+    - name: "tarea 2"
+
+    
+    - name: "tarea 3"
+
+
+parchado de un servidor
+actualizacion de una aplicacion
+rotacion de logs.
+
+
+-----------------------------
+
+resumen de ejecución de ansible.
+
+
+***srvuio01. ok
+****srvuio02. changed
+XXXXX srvuio03. skip
+XXXXX srvuio04. unreachable
+XXXXX srvuio05. failed
+
+
+block/rescue/always

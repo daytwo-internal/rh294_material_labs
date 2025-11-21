@@ -1,0 +1,4 @@
+---
+- name: Mostrar quién ganó
+  debug:
+    msg: "El valor final de 'mensaje' es: {{ mensaje }}"

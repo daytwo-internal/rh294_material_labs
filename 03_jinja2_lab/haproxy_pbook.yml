@@ -1,0 +1,29 @@
+---
+- name: Lab - Template HAProxy DEV/PROD (Backend dinámico)
+  hosts: localhost
+  gather_facts: yes
+
+  vars:
+    env: "prod"   # Cambiar a "prod" para probar
+
+    dev_servers:
+      - { name: "devapp1", ip: "10.0.10.11", port: 8080 }
+      - { name: "devapp2", ip: "10.0.10.12", port: 8080 }
+
+    prod_servers:
+      - { name: "prodapp1", ip: "10.0.20.11", port: 8080 }
+      - { name: "prodapp2", ip: "10.0.20.12", port: 8080 }
+
+  tasks:
+    - name: Generar configuracion HAProxy con Jinja2 según el entorno
+      template:
+        src: haproxy.cfg.j2
+        dest: /tmp/haproxy_{{ env }}.cfg
+        mode: '0644'
+
+    - name: Mostrar archivo generado
+      command: cat /tmp/haproxy_{{ env }}.cfg
+      register: haproxy_cfg
+
+    - debug:
+        var: haproxy_cfg.stdout

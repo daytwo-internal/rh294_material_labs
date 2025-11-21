@@ -1,0 +1,16 @@
+---
+- name: Lab 2 - ignore_errors
+  hosts: lab
+  gather_facts: no
+
+  tasks:
+    - name: Tarea 1 - Comando exitoso
+      command: /bin/echo "Hola desde Ansible"
+
+    - name: Tarea 2 - Falla pero se ignora
+      command: /bin/false
+      ignore_errors: yes
+
+    - name: Tarea 3 - Se ejecuta aunque la tarea 2 falló
+      debug:
+        msg: "Llegamos hasta aquí a pesar del fallo de la tarea 2"

@@ -1,0 +1,13 @@
+- name: Lab 3B - Comando que falla pero NO queremos marcar error
+  hosts: localhost
+  gather_facts: no
+
+  tasks:
+    - name: Comando que devuelve error
+      command: /bin/false
+      register: cmd_fail
+      failed_when: cmd_fail.rc !=1
+      
+    - name: Mostrar resultado
+      debug:
+        msg: "rc={{ cmd_fail.rc }} pero no se considera fallo por failed_when: false"

@@ -1,0 +1,33 @@
+# ansible-lint.yml
+exclude_paths:
+  - roles/test/
+  - old_playbooks/
+  - .venv/
+
+skip_list:                # Reglas que NO quieres aplicar
+  - yaml                  # Desactiva verificación de sintaxis YAML
+  - no-changed-when       # Desactiva regla que pide changed_when
+
+warn_list:                # Reglas que solo generan advertencia (no error)
+  - experimental
+
+verbosity: 1              # Nivel de detalle del output
+
+parseable: true           # Formato más limpio (útil en CI/CD)
+kinds:
+  - playbook
+  - role
+  - tasks
+
+# Variables adicionales
+mock_roles:
+  - common
+  - monitoring
+
+
+ERROR -> 
+
+
+role -> custom_lint_rules
+vars:
+

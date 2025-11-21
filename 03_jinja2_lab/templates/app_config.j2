@@ -1,0 +1,25 @@
+# Archivo generado automáticamente por Ansible
+app_name = {{ app_name }}
+environment = {{ env }}
+version = {{ version }}
+
+# Lista de servidores permitidos
+allowed_servers = [
+{% for server in allowed_servers %}
+  "{{ server }}",
+{% endfor %}
+]
+
+# Habilitar modo debug según entorno
+{% if env == "dev" %}
+debug = true
+log_level = "DEBUG"
+{% else %}
+debug = false
+log_level = "INFO"
+{% endif %}
+
+# Información del servidor donde se genera este archivo
+hostname = {{ ansible_hostname }}
+os_family = {{ ansible_os_family }}
+ip_address = {{ ansible_default_ipv4.address }}

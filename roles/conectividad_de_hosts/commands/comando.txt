@@ -1,0 +1,12 @@
+ansible -i inventario.yml prod -m ping
+ansible -i inventario.yml desa -m ping
+ansible -i inventario.yml all -m ping
+
+--> credenciales
+        machine: usuario y password
+                 ssh key
+                 
+
+
+.ini antigua
+.yml version moderna

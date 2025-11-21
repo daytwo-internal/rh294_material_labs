@@ -1,0 +1,15 @@
+---
+- name: Deploy public key to all hosts
+  hosts: all
+  tasks:
+    - name: Copy public SSH key
+      ansible.posix.authorized_key:
+      user: devops
+      key: "{{ lookup('ansible.builtin.file', '~/.ssh/id_rsa.pub') }}"
+      state: present
+
+
+###how to run playbook
+
+# ansible-navigator run main.yml  -i inventory --limit grupo_servidores --ask-pass --mode stdout
+

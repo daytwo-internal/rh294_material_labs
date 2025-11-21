@@ -1,0 +1,42 @@
+---
+- name: Mostrar facts básicos del sistema
+  hosts: lab
+  gather_facts: yes  # Muy importante para disponer de ansible_facts
+
+  tasks:
+
+    - name: Mostrar el hostname
+      debug:
+        msg: "Hostname: {{ ansible_hostname }}"
+
+    - name: Mostrar la dirección IP principal
+      debug:
+        msg: "IP Principal: {{ ansible_default_ipv4.address }}"
+
+    - name: Mostrar la versión del sistema operativo
+      debug:
+        msg: "SO: {{ ansible_distribution }} {{ ansible_distribution_version }}"
+
+    - name: Mostrar la familia del sistema operativo
+      debug:
+        msg: "Familia OS: {{ ansible_os_family }}"
+
+    - name: Mostrar cantidad de CPUs
+      debug:
+        msg: "CPUs: {{ ansible_processor_vcpus }}"
+
+    - name: Mostrar cantidad de memoria RAM
+      debug:
+        msg: "RAM Total: {{ ansible_memtotal_mb }} MB"
+
+    - name: Mostrar arquitectura del sistema
+      debug:
+        msg: "Arquitectura: {{ ansible_architecture }}"
+
+    - name: Mostrar usuario actual con el que Ansible se conecta
+      debug:
+        msg: "Usuario remoto: {{ ansible_user_id }}"
+
+    - name: Mostrar el filesystem raíz
+      debug:
+        msg: "Filesystem raíz: {{ ansible_mounts[0].device }} ({{ ansible_mounts[0].mount }})"

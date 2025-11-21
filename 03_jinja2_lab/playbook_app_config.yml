@@ -1,0 +1,28 @@
+---
+- name: Lab - Uso de Jinja2 Templates
+  hosts: localhost
+  gather_facts: yes
+
+  vars:
+    app_name: "MyCoolApp"
+    env: "dev"
+    version: "1.2.5"
+    allowed_servers:
+      - server1
+      - server2
+      - server3
+
+  tasks:
+
+    - name: Crear archivo usando el template Jinja2
+      template:
+        src: app_config.j2
+        dest: /tmp/app_config.conf
+        mode: '0644'
+
+    - name: Mostrar el archivo generado
+      command: cat /tmp/app_config.conf
+      register: output
+
+    - debug:
+        var: output.stdout

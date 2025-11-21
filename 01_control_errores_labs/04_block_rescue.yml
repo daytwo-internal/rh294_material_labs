@@ -1,0 +1,24 @@
+---
+- name: Lab 4 - block / rescue / always
+  hosts: localhost
+  gather_facts: no
+
+  tasks:
+    - name: Bloque principal con posible fallo
+      block:
+        - name: Intentar ejecutar un comando que falla
+          command: /bin/false
+
+        - name: Esta tarea nunca se ejecutará dentro del block
+          debug:
+            msg: "Esto no lo verás si falla la anterior"
+
+      rescue:
+        - name: Capturamos el error y tomamos acción
+          debug:
+            msg: "Hubo un fallo en el block, pero lo manejamos en rescue y el play continúa"
+
+      always:
+        - name: Tarea que SIEMPRE se ejecuta
+          debug:
+            msg: "Esto siempre corre (éxito o fallo)"

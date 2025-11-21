@@ -1,0 +1,13 @@
+---
+- name: Lab - Precedencia de Variables
+  hosts: localhost
+  gather_facts: no
+
+  vars_files:
+    - vars/main.yml   # vars_files
+  
+  vars:
+    #mensaje: "Desde vars del play"   # más fuerte que vars_files
+
+  roles:
+    - demo
